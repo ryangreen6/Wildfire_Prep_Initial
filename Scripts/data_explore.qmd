@@ -1,0 +1,45 @@
+---
+title: "data_explore"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(terra)
+library(tmap)
+library(sf)
+```
+
+```{r}
+data_2018 <- st_read(here('data', 'inspections_data', '2018_defensible_space_inspections_SBC', '20181231_defensible_space_inspections_SBC.shp'))
+
+data_2019 <- st_read(here('data', 'inspections_data', '2019_defensible_space_inspections_SBC', '2019_defensible_space_inspections_SBC.shp'))
+
+data_2020 <- st_read(here('data', 'inspections_data', '2020_defensible_space_inspections_SBC', '2020_defensible_space_inspections_SBC.shp'))
+
+data_2021 <- st_read(here('data', 'inspections_data', '2021_defensible_space_inspections_SBC', '2021_defensible_space_inspections_SBC.shp'))
+
+data_2022 <- st_read(here('data', 'inspections_data', '2022_defensible_space_inspections_SBC', '2022_defensible_space_inspections_SBC.shp'))
+
+```
+```
+```
+
+```{r}
+tm_shape(data_2018) +
+    tm_dots(col = 'royalblue') +
+tm_shape(data_2019) +
+    tm_dots(col = 'bisque') +
+tm_shape(data_2020) +
+    tm_dots(col = 'orange') +
+tm_shape(data_2021) +
+    tm_dots(col = 'lavender') +
+tm_shape(data_2022) +
+    tm_dots(col = 'darkgreen')
+
+```
+

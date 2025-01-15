@@ -358,10 +358,57 @@ ggplot() +
 
 
 
+ggplot() +
+    geom_sf(data = sb_census2,
+            fill = 'white',
+            linewidth = 0.1) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_sf(data = missing_merge_sum, aes(color = num_missing), size = 0.5) +
+    scale_color_gradient(low = "mediumblue", high = "violetred1", name = "Noncompliant\nFrequency") +  
+    ylim(34.36, 35.1) + xlim(-120.62, -119.4) +
+    labs(title = "Defensible Space Compliance Inspections")
 
 
-library(tmap)
+ggplot() +
+    geom_sf(data = sb_census2,
+            fill = 'white',
+            linewidth = 0.3) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_sf(data = defsp23_clean, aes(color = status), size = 1) +
+    scale_color_discrete(name = "Compliance Status",
+                         guide = guide_legend(override.aes = list(size = 6))) + 
+    ylim(34.36, 35.1) + xlim(-120.62, -119.4) +
+    labs(title = "Defensible Space Compliance Inspections 2023")
 
-tm_shape(sb_census2) +
-    tm_polygons(fill = 'white')
 
+ggplot() +
+    geom_sf(data = sb_census2,
+            fill = 'white',
+            linewidth = 0.3) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_sf(data = defsp23_clean, aes(color = status), size = 1) +
+scale_color_manual(
+    name = "Compliance Status",
+    values = c(
+        "Compliant" = 'limegreen',
+        "Compliant 6 months - 1 year" = 'green4', 
+        "Due for Inspection" = 'tan1',
+        "Uninspected (Locked Gate)" = 'tomato',
+        "1st Non Compliant" = 'red1',
+        "2nd Non Compliant" = 'firebrick3', 
+        "3rd Non Compliant" = 'red4',
+        "Structure Destroyed" = 'black',
+        "Incomplete Data or Never Inspected" = 'grey40'
+    ),
+    guide = guide_legend(override.aes = list(size = 6))
+) +
+    ylim(34.36, 35.1) +
+    xlim(-120.62, -119.4) +
+    labs(title = "Defensible Space Compliance Inspections 2023")
+
+
+
+            
